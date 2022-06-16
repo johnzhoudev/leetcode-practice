@@ -1,3 +1,7 @@
+# Results: 
+# Runtime: 87ms 65.78%
+# Memory Usage: 15.4 9.08%
+
 # int array nums
 # integer target
 # return indices of two numbers so they add to target
