@@ -1,3 +1,7 @@
+# Results:
+# Runtime: 70ms 84.80%
+# Memory Usage: ms,MB of
+
 # Given string s
 # Find longest substring no repeating characters
 # s = "abcabcbb", out = abc
