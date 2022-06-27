@@ -1,3 +1,5 @@
+# Usage: Copy leetcode results text and paste. Make sure you name your file exactly as the problem is called.
+
 runtimeInput = input("Paste Runtime Text: ")
 memoryInput = input("Paste Memory Text: ")
 
