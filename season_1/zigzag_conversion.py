@@ -1,3 +1,7 @@
+# Results:
+# Runtime: 77ms 70.68%
+# Memory Usage: 14.2MB 28.26%
+
 # Take string and row len
 # write in zigzag pattern: down, rightup, down...
 # then return as if read from left to right
