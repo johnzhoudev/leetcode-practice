@@ -12,8 +12,8 @@ mem = str(memWords[2]) + "MB"
 memPercent = str(memWords[6])
 
 prefix = "Python3 online submissions for "
-fileNameStart = runtimeInput.find(prefix) + len(prefix)
-fileName = runtimeInput[fileNameStart:].strip(".").lower().replace(" ", "_")
+fileNameStart = memoryInput.find(prefix) + len(prefix)
+fileName = memoryInput[fileNameStart:].strip(".").lower().replace(" ", "_")
 fileName += ".py"
 
 if (not mem or not memPercent or not runtime or not runtimePercent):
