@@ -1,3 +1,7 @@
+# Results: - optimized version
+# Runtime: 38ms 98.62%
+# Memory Usage: 13.9MB 25.58%
+
 # Results:
 # Runtime: 50ms 83.28%
 # Memory Usage: 13.9MB 25.58%
@@ -50,13 +54,20 @@ def nextPermutation2(nums):
 		reverse(nums, 0)
 		return
 
-	# 2. find the item to swap
-	indexToSwap = swapPosition + 1 # largets element right of swap position, leftmost elt if match
-	# for i in range(len(nums) - 1, swapPosition, -1):
-	for i in range(swapPosition + 1, len(nums)):
-		# same value, so set to further one to maintain descending order
-		if ((nums[i] == nums[indexToSwap]) or (nums[swapPosition] < nums[i] and nums[i] < nums[indexToSwap])):
+	# Optimization: since elements from right are in ascending order, can just check until greater
+	indexToSwap = len(nums) - 1
+	for i in range(len(nums) - 1, swapPosition, -1):
+		if (nums[swapPosition] < nums[i]):
 			indexToSwap = i
+			break
+
+	# 2. find the item to swap
+	# indexToSwap = swapPosition + 1 # largets element right of swap position, leftmost elt if match
+	# # for i in range(len(nums) - 1, swapPosition, -1):
+	# for i in range(swapPosition + 1, len(nums)):
+	# 	# same value, so set to further one to maintain descending order
+	# 	if ((nums[i] == nums[indexToSwap]) or (nums[swapPosition] < nums[i] and nums[i] < nums[indexToSwap])):
+	# 		indexToSwap = i
 	
 	# 3. swap 4. reverse
 	swap(nums, swapPosition, indexToSwap)
