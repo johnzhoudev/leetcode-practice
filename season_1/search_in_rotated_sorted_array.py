@@ -59,6 +59,21 @@ def search(nums, target):
 		# 0 1 2 3 4 5 6 Edge case
 		# damn, need to be able to eliminate the pivot basically
 
+		# Improvement here: 
+		# Crazy stuff! if mid > hi, must be on right and can rule out mid since if mid was start, <.
+		# otherwise, must be on left and cannot rule out mid
+		# also handles if 0 is start (no rotation). keeps reducing hi
+		# always reduces since mid = lo
+
+		# Left bias, mid = (lo + hi) // 2
+
+		# while(lo<hi){
+		# 	int mid=(lo+hi)/2;
+		# 	if(A[mid]>A[hi]) lo=mid+1;
+		# 	else hi=mid;
+		# }
+
+
 		if (pivot != 0 and nums[pivot - 1] > nums[pivot]):
 			startIndex = pivot
 			break
