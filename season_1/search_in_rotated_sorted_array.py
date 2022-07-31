@@ -36,6 +36,10 @@ must have wrapped around. Thus go whichever side is less.
 O(log n) time. O(1) space, basically.
 Can we do it faster? lower bound on comparison based sorting, yea it's O(log n) minimum. 
 
+Tactic:
+Do binary search to find "start" (use fast binary search, left bias pivot and rule out). then do regular binary search
+with start + index % len.
+
 """
 
 def search(nums, target):
