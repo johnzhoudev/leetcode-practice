@@ -20,10 +20,35 @@ How to handle negative exponents?
 
 Fractional exponents?
 
-Better than naive way
+Better:
+Instead of storing solutions, just generate solutions as you go:
+x^10
+10 = 1010, check 1's bit. if 1, *= x
+101 -> x^2 mult
+10 -> x^2 still, but curr to x^4
+1 -> curr = x^8, mult.
 
 
+Apparently faster, use formula x^n = x(x^2)^(n-1/2) if odd, (x^2)^n/2 if even???
+
+Tactic: Use doubling, can do as you bit shift. Or do recursive.
 """
+
+def pow3(x, n):
+	isNegativePower = n < 0
+	if (isNegativePower):
+		n *= -1
+
+	# assume n positive
+	total = 1
+	while (n > 0):
+		if (n & 1):
+			total *= x
+		x *= x # get next iteration
+		n >>= 1 # reduce n
+	
+	return total if not isNegativePower else 1/total
+
 
 # n must be non-neg here
 # x must also be positive
@@ -88,7 +113,8 @@ def pow(x, n):
 # pow(3, 20)
 
 def validate(x, n, expected):
-	result = pow(x, n)
+	# result = pow(x, n)
+	result = pow3(x, n)
 	if (result != expected):
 		print("Test failed:")
 		print(x)
