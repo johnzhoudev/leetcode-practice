@@ -1,3 +1,7 @@
+# Results:
+# Runtime: 1211ms 39.81%
+# Memory Usage: 28.5MB 9.99%
+
 """
 
 https://leetcode.com/problems/maximum-subarray/
@@ -20,9 +24,34 @@ a negative total sum else could have been added. So we can scan the array from l
 - if positive, keep scanning. If negative, start decrementing from left. if hit end, done.
 - Will we always hit the solution? if we hit negative, cannot be part of solution.
 
+Thinking V3:
+- min time complexity O(n) to check each element
+- Brute force: get all ranges O(n^2) * O(n) to check size.
+	- dp get size in O(1), but still check O(n2) ranges
+
+Another DP solution?
+- d[i] = max thing ending at index i, then d[i+1] = d[i] + A[i+1] or 0
+	- just get max of that
+	- O(n) time
+	- O(1) aux space since we just need to keep the last one
+
 """
 
+# Careful: what if all negative? cannot choose 0
+# Best ending at i is either previous best + i or just i (don't use previous best)
+
 def maxSubArray(nums):
+	previousIndexBest = 0
+	best = nums[0]
+	for num in nums:
+		# new is previousIndexBest + num or num
+		previousIndexBest = num if previousIndexBest <= 0 else previousIndexBest + num
+		best = previousIndexBest if previousIndexBest > best else best
+
+		# previousIndexBest = max(previousIndexBest + num, num) # current best is now just using num, or previous
+		# best = max(previousIndexBest, best) # if we add num, use previous index best + num. Else use 0
+	
+	return best
 
 
 def maxSubArray2(nums):
@@ -56,3 +85,4 @@ def maxSubArray2(nums):
 	
 print(maxSubArray([-2,1,-3,4,-1,2,1,-5,4]))
 print(maxSubArray([1]))
+print(maxSubArray([-1]))
