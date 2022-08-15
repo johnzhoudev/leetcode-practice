@@ -33,14 +33,19 @@ def mergeTwoLists(list1, list2):
 			list2 = list2.next
 
 		tail = tail.next
+
+	# optimization using python ternary
+	if (list1 or list2): 
+		tail.next = list1 if list2 is None else list2
+	return head.next
 		
 	# if both empty, return 
 	# Technically handled already
 	# if (list1 is None and list2 is None):
 	# 	return head.next
-	if (list2 is None): # append list1
-		tail.next = list1
-	else:
-		tail.next = list2 # append list2
+	# if (list2 is None): # append list1
+	# 	tail.next = list1
+	# else:
+	# 	tail.next = list2 # append list2
 	
-	return head.next
+	# return head.next
