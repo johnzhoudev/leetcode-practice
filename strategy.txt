@@ -1,0 +1,15 @@
+1. 10 mins easy, 20 mins medium, 30 mins hard
+
+1. What is the brute force method? Minimum time complexity?
+
+2. Does DP help? 
+- A search algorithm (how to go thru all combos)?
+- greedy?
+
+3. What data structures might help?
+- hash table
+- dictionary
+- heap
+- stack
+- vector
+- binary tree
