@@ -1,3 +1,7 @@
+# Results:
+# Runtime: 67ms 47.67%
+# Memory Usage: 13.9MB 74.67%
+
 """
 https://leetcode.com/problems/remove-duplicates-from-sorted-list-ii/
 
@@ -25,6 +29,9 @@ Simpler
 - getNext() -> as you go, store left. then if left matches right, duplicate, keep skipping till
 - left doesn't match stored. then restart check. returns if left is new, and right doesn't match.
 O(n) time, O(1) space
+
+Tactic: If you want to use O(1) space, need to get next node dynamically. Also use dummy head to avoid weirdness.
+- just skip all nodes that match.
 """
 
 # Definition for singly-linked list.
@@ -36,10 +43,39 @@ class ListNode:
       print(self.val)
       if (self.next is not None): self.next.print()
 
+def deleteDuplicates3(head):
+	# sentinel head
+	sentinel = ListNode(-1, head)
+	predecessor = sentinel
+
+	while (head): # either head is beginning of duplicates, or not. either skip, or add.
+
+		# if next is null, all good. add.
+		if (head.next is None):
+			predecessor.next = head
+			head = head.next
+			predecessor = predecessor.next
+		# if duplicate, advance but do not advance predecessor in case 2 duplicate ranges
+		elif (head.next and head.val == head.next.val):
+			# If a duplicate, must skip
+			while (head.next and head.val == head.next.val): # want to end with head at last one to be deleted
+				head = head.next
+
+			head = head.next # skip one more time
+			# also set predecessor to skip all duplicates in case ends in duplicate
+			predecessor.next = head
+		else: # not a duplicate, so add
+			predecessor.next = head
+			head = head.next
+			predecessor = predecessor.next
+
+	return sentinel.next
+
 def deleteDuplicates2(head):
 
+	dummyHead = ListNode(-1, head)
 	global currNode
-	currNode = head
+	currNode = dummyHead
 
 	def getNext(): # called on current node we want to append to
 		leftNode = currNode.next
@@ -61,14 +97,14 @@ def deleteDuplicates2(head):
 		return None
 	
 	# then our solution is easy. build list, and use getNext
-	currNode = getNext() # get first non-duplicate node
-	head = currNode
+	# currNode = getNext() # get first non-duplicate node, from dummyHead so it considers all things after.
+	# head = currNode
 
 	while (currNode is not None):
-		currNode.next = getNext()
+		currNode.next = getNext() # first time this runs, currNode is dummyHead so getNext gets first non repeat
 		currNode = currNode.next
 	
-	return head
+	return dummyHead.next
 
-# deleteDuplicates2(ListNode(1, ListNode(2, ListNode(3, ListNode(3, ListNode(4, ListNode(4, None))))))).print()
-deleteDuplicates2(ListNode(1, ListNode(1, ListNode(1, ListNode(2, ListNode(3, ListNode(3, None))))))).print()
+# deleteDuplicates3(ListNode(1, ListNode(2, ListNode(3, ListNode(3, ListNode(4, ListNode(4, None))))))).print()
+deleteDuplicates3(ListNode(1, ListNode(1, ListNode(1, ListNode(2, ListNode(3, ListNode(3, None))))))).print()
