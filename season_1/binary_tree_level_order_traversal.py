@@ -14,6 +14,9 @@ Time: O(n)
 Space: O(n)
 - Is there a way to do this without recording level? Maybe not easily.
 
+TODO: Better implementation: Juggle between 2 lists for each level, or count number of items in queue at each level.
+- so don't need to store level number
+
 """
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
