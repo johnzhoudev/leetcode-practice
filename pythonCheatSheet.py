@@ -25,3 +25,11 @@ arr += [4]
 arr.extend([4, 5, 6])
 arr.append(4)
 print(arr)
+
+# Enums
+class Direction:
+	LEFT = 0
+	RIGHT = 1
+
+print(Direction.LEFT)
+print(Direction.RIGHT)
