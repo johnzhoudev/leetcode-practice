@@ -1,4 +1,8 @@
 # Results:
+# Runtime: 49ms 57.27%
+# Memory Usage: 14.1MB 58.19%
+
+# Results:
 # Runtime: 36ms 89.23%
 # Memory Usage: 14.1MB 58.19%
 
@@ -20,6 +24,8 @@ Tactic: Use a deque, and adjust how you add and traverse the nodes on each level
 Alternatives:
 - double stack - popping and adding implicitly reverses!
 - DFS - process node, then search left, then right. will always append nodes to correct levels from left to right!
+- Same soln, but more efficiently, make levelRes a specific size and insert using array indices. Better than 
+having multiple cases for popping and pushing items
 
 """
 class TreeNode:
@@ -49,25 +55,22 @@ def zigzagLevelOrderTraversal(root):
 	while (len(nodesDeque) != 0):
 		# init deque for next level
 		nextNodeDeque = deque()
-		levelRes = []
+		levelRes = [None for _ in range(len(nodesDeque))]
 
 		# go thru in correct direction, pop node, add to level res, and add children in same direction
-		while (len(nodesDeque) != 0):
+		for i in range(len(nodesDeque)):
+			node = nodesDeque.popleft()
+
 			if (direction == Direction.RIGHT):
-				node = nodesDeque.popleft()
-				levelRes += [node.val]
-				if (node.left):
-					nextNodeDeque.append(node.left)
-				if (node.right):
-					nextNodeDeque.append(node.right)
+				levelRes[i] = node.val
 			else:
-				node = nodesDeque.pop()
-				levelRes += [node.val]
-				# add right first
-				if (node.right):
-					nextNodeDeque.appendleft(node.right)
-				if (node.left):
-					nextNodeDeque.appendleft(node.left)
+				levelRes[-1 - i] = node.val
+
+			if (node.left):
+				nextNodeDeque.append(node.left)
+			if (node.right):
+				nextNodeDeque.append(node.right)
+
 		nodesDeque = nextNodeDeque
 		res += [levelRes]
 		direction = 1 - direction
