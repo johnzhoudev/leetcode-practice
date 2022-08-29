@@ -17,6 +17,10 @@ Space: O(n)
 
 Tactic: Use a deque, and adjust how you add and traverse the nodes on each level. Can know which level node is by handling all in 1 level at same time.
 
+Alternatives:
+- double stack - popping and adding implicitly reverses!
+- DFS - process node, then search left, then right. will always append nodes to correct levels from left to right!
+
 """
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
