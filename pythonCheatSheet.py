@@ -44,3 +44,15 @@ class TreeNode:
       print(self.val)
       if (self.left): self.left.print()
       if (self.right): self.right.print()
+
+# hash tables
+table = {}
+table = dict()
+table[34] = 2
+table["asdf"]= 3
+print(table.items())
+print(table.keys())
+print(table.values())
+if (34 in table):
+	print("34 is in table")
+del table["asdf"]
