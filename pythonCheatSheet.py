@@ -33,3 +33,14 @@ class Direction:
 
 print(Direction.LEFT)
 print(Direction.RIGHT)
+
+# Tree shortcuts
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+    def print(self):
+      print(self.val)
+      if (self.left): self.left.print()
+      if (self.right): self.right.print()
