@@ -21,7 +21,8 @@ print(queue1.pop(0))
 
 # Array extend and append
 arr = [1, 2, 3]
-arr += [4]
+arr += [4] # append
+arr += [5, 6, 7] # extend
 arr.extend([4, 5, 6])
 arr.append(4)
 print(arr)
@@ -56,3 +57,10 @@ print(table.values())
 if (34 in table):
 	print("34 is in table")
 del table["asdf"]
+
+# iterate with indices
+l = [1, 2, 3, 4, 5, 6]
+for idx, x in enumerate(l):
+	print(idx)
+	print(x)
+
