@@ -1,26 +1,41 @@
 # Usage: Copy leetcode results text and paste. Make sure you name your file exactly as the problem is called.
 
-runtimeInput = input("Paste Runtime Text: ")
-memoryInput = input("Paste Memory Text: ")
+print("Paste Result Text: ", end='')
 
-runtimeWords = runtimeInput.split()
-runtime = str(runtimeWords[1]) + "ms"
-runtimePercent = str(runtimeWords[5])
+input() # Runtime word
+runtimeLine = input() # Runtime
+input() # beats
+runtimePercent = input()
+input() # memory
+memoryLine = input()
+input() # beats
+memoryPercent = input()
 
-memWords = memoryInput.split()
-mem = str(memWords[2]) + "MB"
-memPercent = str(memWords[6])
+# runtimeWords = runtimeLine.split()
+# runtime = str(runtimeWords[0]) + "ms"
+# runtimePercent = str(runtimeWords[5])
 
-prefix = "Python3 online submissions for "
-fileNameStart = memoryInput.find(prefix) + len(prefix)
-fileName = memoryInput[fileNameStart:].strip(".").lower().replace(" ", "_")
+runtime = runtimeLine.replace(" ", "")
+# runtime Percent fine
+
+mem = memoryLine.replace(" ", "")
+memPercent = memoryPercent
+
+# prefix = "Python3 online submissions for "
+# fileNameStart = memoryInput.find(prefix) + len(prefix)
+# fileName = memoryInput[fileNameStart:].strip(".").lower().replace(" ", "_")
+# fileName += ".py"
+
+fileName = input("File name from url: ")
+fileName = fileName.split("/")[4]
+fileName = fileName.replace("-", "_").lower()
 fileName += ".py"
 
 if (not mem or not memPercent or not runtime or not runtimePercent):
 	print("Error: Bad Parsing.")
 	exit()
 
-with open("season_1/" + fileName, "r+") as f:
+with open("season_2_neetcode_150/" + fileName, "r+") as f:
 	content = f.read()
 	f.seek(0, 0)
 	f.write("# Results:\n# Runtime: " + runtime + " " + runtimePercent + "\n")
