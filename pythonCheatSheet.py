@@ -64,3 +64,17 @@ for idx, x in enumerate(l):
 	print(idx)
 	print(x)
 
+# heaps - min heap
+import heapq
+
+heap = []
+heapq.heappush(heap, (2, "2"))
+heapq.heappush(heap, (3, "3"))
+heapq.heappush(heap, (4, "3"))
+heapq.heappush(heap, (3, "3"))
+print(heapq.heappop(heap))
+print(heapq.heappop(heap))
+print(heapq.heappop(heap))
+print(heapq.heappop(heap))
+print(heap)
+
