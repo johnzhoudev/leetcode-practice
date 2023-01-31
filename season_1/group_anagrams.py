@@ -28,6 +28,7 @@ Better? Can we do in O(n)?
 	- can convert fingerprints to keys -> a2c3, or something in alphabetical order?
 	- Not convinced that you can use dictionaries as keys in a hash table efficiently. Would need to have a way of ordering
 		so you can go char by char, or equality checks / comparisons could take time too.
+	- actually you can use dicts as keys, just need to be immutable. frozen set. can hash anything!
 
 Tactic: Use sorted string as key, and hash.
 
