@@ -1,3 +1,7 @@
+# Results:
+# Runtime: 56ms 86.12%
+# Memory Usage: 14MB 60.6%
+
 """
 
 https://leetcode.com/problems/combination-sum/
@@ -31,22 +35,27 @@ check sum
 add childs
 - can get unique if iterate in order, never add from behind
 
+Tactic: Classic backtracking. Either do recursive or iterative. To avoid repeats, only add from idx
 
 """
 
 def solveIterative(candidates, target):
-    state = [(soln, rollingSum, lastAdded)]
+
+    state = [([], 0, 0)]
     output = []
 
     while state:
-        currSoln, rollingSum = state.pop()
+        currSoln, rollingSum, fromIdx = state.pop()
         if rollingSum > target:
             continue
         elif rollingSum == target:
             output += [currSoln[:]]
             continue
         else:
-            for i in range():
+            for i in range(fromIdx, len(candidates)):
+                state.append((currSoln + [candidates[i]], rollingSum + candidates[i], i))
+    
+    return output
 
 
 
@@ -55,7 +64,7 @@ def solve(candidates, target):
     # init state
     output = []
 
-    def backtrack(currentCombo, rollingSum):
+    def backtrack(currentCombo, rollingSum, fromIdx):
         nonlocal candidates
         nonlocal output
         if rollingSum > target:
@@ -64,11 +73,11 @@ def solve(candidates, target):
             output += [currentCombo.copy()]
             return
         else: # rolling sum < target
-            for i in range(len(candidates)): # can add any number of times
+            for i in range(fromIdx, len(candidates)): # can add any number of times
                 currentCombo += [candidates[i]]
-                backtrack(currentCombo, rollingSum + i)
+                backtrack(currentCombo, rollingSum + candidates[i], i)
                 currentCombo.pop() # remove
 
-    backtrack([], 0, -1)
+    backtrack([], 0, 0)
 
     return output
