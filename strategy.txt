@@ -5,6 +5,7 @@
 2. Does DP help? 
 - A search algorithm (how to go thru all combos)?
 - greedy?
+- sorting?
 
 3. What data structures might help?
 - hash table

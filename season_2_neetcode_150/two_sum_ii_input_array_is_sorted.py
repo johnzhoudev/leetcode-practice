@@ -15,6 +15,7 @@ Ideas:
 
 
 Tactic: 2 pointers, close in on target
+Correctness: will eventually have to hit 1, and sum must be larger / smaller. will hit other.
 """
 
 def solve(nums, target):
