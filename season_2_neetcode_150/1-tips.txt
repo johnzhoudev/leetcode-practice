@@ -1,0 +1,10 @@
+Tips for each category
+
+Rolling Window
+- monotonically decreasing queue sometimes useful to find min for each window
+
+Stack
+- monotonically decreasing stack 
+
+Binary search
+- knowing how to pivot bias left or right, and keeping results if still valid
