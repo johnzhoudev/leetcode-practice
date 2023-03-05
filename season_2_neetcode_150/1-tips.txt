@@ -8,3 +8,6 @@ Stack
 
 Binary search
 - knowing how to pivot bias left or right, and keeping results if still valid
+
+Linked List 
+- Fast and slow advancing
