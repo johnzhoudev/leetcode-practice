@@ -17,11 +17,41 @@ Idea:
 Idea2: 
 - sum, missing is val
 
-Idea 3: Complicated math
+Idea 3: Complicated math, it works..
+- first, start at last number and advance n steps - guaranteed to reach cycle, and enter cycle is duplicated key
+- Then advance until reach same number - len of cycle
+- then have slow and fast ptr and advance - once match, one before is where they entered the cycle.
 
+Idea 4: cool tortise and hare stuff
+- hare must catch up to tortise
+- if you start hare at intersection point and run 1 step at a time, and tortise at start, will meet at entrance of loop
 
+Tactic: Tortise and Hare (first find intersection, must exist. Then hare and tortise same speed, hare start at intersect, will end at entrance), or fun math. Basically all methods to find entrance to cycle, starting from back.
 
 """
+
+def solveTortiseHare(nums):
+    fast = len(nums)
+    slow = len(nums)
+
+    fast = nums[nums[fast - 1] - 1]
+    slow = nums[slow - 1]
+    while fast != slow:
+        fast = nums[nums[fast - 1] - 1]
+        slow = nums[slow - 1]
+    
+    # Now matching index
+
+    slow = len(nums)
+    prevSlow = None
+    while fast != slow:
+        prevSlow = slow
+        slow = nums[slow - 1]
+        fast = nums[fast - 1]
+
+    return nums[prevSlow - 1]
+
+
 
 def solve(nums):
     curr = len(nums) # index of current value
