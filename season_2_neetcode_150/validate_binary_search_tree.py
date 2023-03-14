@@ -1,3 +1,7 @@
+# Results:
+# Runtime: 42ms 86.8%
+# Memory Usage: 16.5MB 71.44%
+
 """
 
 https://leetcode.com/problems/validate-binary-search-tree/
@@ -8,8 +12,23 @@ Idea:
 - recursion
 O(n) time, O(n) space - at any point in time, could have n recursions going
 
-TODO: Continue, use valid range?
+Idea 2: use valid range
+
+Tactic: Use valid range, can check if each node satifsfies iteratively
+
 """
+
+def solve(root):
+
+    state = [(root, float("-inf"), float("inf"))]
+    while state:
+        node, minVal, maxVal = state.pop()
+        if node is None: continue
+        if node.val <= minVal or node.val >= maxVal:
+            return False
+        state += [(node.left, minVal, node.val), (node.right, node.val, maxVal)]
+    return True
+
 
 def solve(root):
 
