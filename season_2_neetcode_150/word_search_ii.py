@@ -35,6 +35,7 @@ class TrieNode:
     def __init__(self):
         self.letterTable = {}
         self.isWord = False
+        self.word = ""
     
     def insert(self, word):
         currNode = self
@@ -43,6 +44,7 @@ class TrieNode:
                 currNode.letterTable[c] = TrieNode()
             currNode = currNode.letterTable[c]
         currNode.isWord = True
+        currNode.word = word
 
     # def doesExist(self, word):
     #     currNode = self
@@ -96,14 +98,42 @@ def buildPrefixTree(words):
     return trie
 
 
+directions = [(0, 1), (1, 0), (-1, 0), (0, -1)]
+
 def solve(board, words):
     prefixTrie = buildPrefixTree(words)
-    state = []
+    output = []
 
     # now do dfs of all words, mark words as not word if found, and see
     for row in range(len(board)):
         for col in range(len(board[0])):
-            state.append((prefixTrie, ))
+            if board[row][col] not in prefixTrie.letterTable:
+                continue
+            # Do a dfs / search alg for all paths
+            visited = set()
+            state = [prefixTrie.letterTable[board[row][col]]]
+            visited.add(state[0])
+            while state:
+                node = state.pop()
+                visited.add(node)
+                if node.isWord:
+                    node.isWord = False # prevent from being checked again
+                    output.append(node.word)
+                
+                # advance
+                for deltaRow, deltaCol in directions:
+                    newRow = deltaRow + row
+                    newCol = deltaCol + col
+                    if newRow < 0 or newRow > len(board) or newCol < 0 or newCol > len(board[0]):
+                        continue
+
+                for next in node.letterTable.values():
+                    if next not in visited:
+                        state.append(next)
+                
+
+
+
 
 
 def solveNotWorking(board, words):
