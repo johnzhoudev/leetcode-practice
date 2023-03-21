@@ -11,3 +11,6 @@ Binary search
 
 Linked List 
 - Fast and slow advancing
+
+Trie
+- use for c in word

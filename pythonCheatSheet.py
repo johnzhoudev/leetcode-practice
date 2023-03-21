@@ -78,3 +78,14 @@ print(heapq.heappop(heap))
 print(heapq.heappop(heap))
 print(heap)
 
+
+arr = [1, 2, 3, 4, 5]
+arr.index(3) # 2
+
+## Sets
+
+thisSet = set()
+thisSet.add('a')
+if 'a' in thisSet:
+      print("hi")
+thisSet.remove('a')
