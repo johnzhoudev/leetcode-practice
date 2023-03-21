@@ -36,6 +36,7 @@ class TrieNode:
         self.letterTable = {}
         self.isWord = False
         self.word = ""
+        self.letter = ''
     
     def insert(self, word):
         currNode = self
@@ -43,6 +44,7 @@ class TrieNode:
             if c not in currNode.letterTable:
                 currNode.letterTable[c] = TrieNode()
             currNode = currNode.letterTable[c]
+            currNode.letter = c
         currNode.isWord = True
         currNode.word = word
 
@@ -104,32 +106,39 @@ def solve(board, words):
     prefixTrie = buildPrefixTree(words)
     output = []
 
+    def dfs(board, visited, node, row, col):
+        nonlocal output
+
+        if (row, col) in visited:
+            return
+        
+        visited.add((row, col))
+
+        if node.isWord:
+            node.isWord = False
+            output.append(node.word)
+        
+        # Now dfs to next stuff
+        for deltaRow, deltaCol in directions:
+            newRow = deltaRow + row
+            newCol = deltaCol + col
+            if newRow < 0 or newRow >= len(board) or newCol < 0 or newCol >= len(board[0]):
+                continue
+            if board[newRow][newCol] in node.letterTable:
+                dfs(board, visited, node.letterTable[board[newRow][newCol]], newRow, newCol)
+        
+        visited.remove((row, col))
+
     # now do dfs of all words, mark words as not word if found, and see
     for row in range(len(board)):
         for col in range(len(board[0])):
             if board[row][col] not in prefixTrie.letterTable:
                 continue
-            # Do a dfs / search alg for all paths
-            visited = set()
-            state = [prefixTrie.letterTable[board[row][col]]]
-            visited.add(state[0])
-            while state:
-                node = state.pop()
-                visited.add(node)
-                if node.isWord:
-                    node.isWord = False # prevent from being checked again
-                    output.append(node.word)
-                
-                # advance
-                for deltaRow, deltaCol in directions:
-                    newRow = deltaRow + row
-                    newCol = deltaCol + col
-                    if newRow < 0 or newRow > len(board) or newCol < 0 or newCol > len(board[0]):
-                        continue
 
-                for next in node.letterTable.values():
-                    if next not in visited:
-                        state.append(next)
+            # Do a search alg for all paths
+            visited = set()
+            dfs(board, visited, prefixTrie.letterTable[board[row][col]], row, col)
+    return output
                 
 
 
