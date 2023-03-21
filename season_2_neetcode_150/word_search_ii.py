@@ -1,3 +1,7 @@
+# Results:
+# Runtime: 1306ms 67.14%
+# Memory Usage: 18.8MB 13.29%
+
 """
 
 https://leetcode.com/problems/word-search-ii/
@@ -29,14 +33,15 @@ Or, use the trie to generate paths
 Final idea:
 - Build prefix trie for all words, to check existence
 - Do a dfs from each starting location, and check if still in trie path, else off. 
+- need to prune tree for fast
+
+Tactic: Build Prefix Tree for words, do recursive search alg from all starts. Careful with visited, must pop when return. Prune tree after word found. tip, mark isWord = False when word found to avoid dupe
 """
 
 class TrieNode:
     def __init__(self):
         self.letterTable = {}
         self.isWord = False
-        self.word = ""
-        self.letter = ''
     
     def insert(self, word):
         currNode = self
@@ -44,54 +49,15 @@ class TrieNode:
             if c not in currNode.letterTable:
                 currNode.letterTable[c] = TrieNode()
             currNode = currNode.letterTable[c]
-            currNode.letter = c
         currNode.isWord = True
-        currNode.word = word
-
-    # def doesExist(self, word):
-    #     currNode = self
-    #     for c in word:
-    #         if c not in currNode.letterTable:
-    #             return False
-    #         currNode = currNode.letterTable[c]
-    #     return True
-
-    def findWordsInWord(self, word):
-        result = []
-        currWord = ""
-        currNode = self
-        for c in word:
-            if c not in currNode.letterTable:
-                break
-            currNode = currNode.letterTable[c]
-            currWord += c
-            if currNode.isWord:
-                result += [currWord]
-        return result
-
-    def findWordsInWord(self, word, startIdx):
-        result = []
-        currWord = ""
-        currNode = self
-        idx = startIdx
-        while idx < len(word):
-            c = word[idx]
-            if c not in currNode.letterTable:
-                break
-            currNode = currNode.letterTable[c]
-            currWord += c
-            if currNode.isWord:
-                result += [currWord]
-            idx += 1
-        return result
     
-    def findWordsCombo(self, word):
-        result = []
-        for startIdx in range(len(word)):
-            result += self.findWordsInWord(word, startIdx)
+    def pruneWord(self, word, idx = -1): # idx is of current node
+        if idx <= len(word) - 3: # will add -2, but not -1
+            self.letterTable[word[idx + 1]].pruneWord(word, idx + 1)
         
-        return result
-
+        child = self.letterTable[word[idx + 1]]
+        if len(child.letterTable) == 0 and child.isWord == False:
+            del self.letterTable[word[idx + 1]]
 
 def buildPrefixTree(words):
     trie = TrieNode()
@@ -99,24 +65,22 @@ def buildPrefixTree(words):
         trie.insert(word)
     return trie
 
-
 directions = [(0, 1), (1, 0), (-1, 0), (0, -1)]
 
 def solve(board, words):
     prefixTrie = buildPrefixTree(words)
     output = []
 
-    def dfs(board, visited, node, row, col):
+    def dfs(board, visited, node, row, col, word):
         nonlocal output
-
         if (row, col) in visited:
             return
-        
         visited.add((row, col))
 
         if node.isWord:
             node.isWord = False
-            output.append(node.word)
+            output.append(word)
+            prefixTrie.pruneWord(word)
         
         # Now dfs to next stuff
         for deltaRow, deltaCol in directions:
@@ -125,8 +89,8 @@ def solve(board, words):
             if newRow < 0 or newRow >= len(board) or newCol < 0 or newCol >= len(board[0]):
                 continue
             if board[newRow][newCol] in node.letterTable:
-                dfs(board, visited, node.letterTable[board[newRow][newCol]], newRow, newCol)
-        
+                dfs(board, visited, node.letterTable[board[newRow][newCol]], newRow, newCol, word + board[newRow][newCol])
+
         visited.remove((row, col))
 
     # now do dfs of all words, mark words as not word if found, and see
@@ -134,10 +98,9 @@ def solve(board, words):
         for col in range(len(board[0])):
             if board[row][col] not in prefixTrie.letterTable:
                 continue
-
             # Do a search alg for all paths
             visited = set()
-            dfs(board, visited, prefixTrie.letterTable[board[row][col]], row, col)
+            dfs(board, visited, prefixTrie.letterTable[board[row][col]], row, col, board[row][col])
     return output
                 
 
