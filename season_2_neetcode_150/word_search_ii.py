@@ -25,6 +25,10 @@ Or, use the trie to generate paths
     - start search at each letter, and use trie to check directions and see if a move is valid
     - some backtracking alg, storing visited and state and stuff
     - oh dang
+
+Final idea:
+- Build prefix trie for all words, to check existence
+- Do a dfs from each starting location, and check if still in trie path, else off. 
 """
 
 class TrieNode:
@@ -91,7 +95,18 @@ def buildPrefixTree(words):
         trie.insert(word)
     return trie
 
+
 def solve(board, words):
+    prefixTrie = buildPrefixTree(words)
+    state = []
+
+    # now do dfs of all words, mark words as not word if found, and see
+    for row in range(len(board)):
+        for col in range(len(board[0])):
+            state.append((prefixTrie, ))
+
+
+def solveNotWorking(board, words):
     prefixTrie = buildPrefixTree(words)
 
     # now generate all combos of words, and reverse
