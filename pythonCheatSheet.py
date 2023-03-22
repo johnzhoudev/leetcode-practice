@@ -77,6 +77,7 @@ print(heapq.heappop(heap))
 print(heapq.heappop(heap))
 print(heapq.heappop(heap))
 print(heap)
+# smallest element always heap[0]
 
 
 arr = [1, 2, 3, 4, 5]

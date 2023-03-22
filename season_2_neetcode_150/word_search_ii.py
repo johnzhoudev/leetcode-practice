@@ -104,10 +104,6 @@ def solve(board, words):
     return output
                 
 
-
-
-
-
 def solveNotWorking(board, words):
     prefixTrie = buildPrefixTree(words)
 
