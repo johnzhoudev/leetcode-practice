@@ -14,3 +14,7 @@ Linked List
 
 Trie
 - use for c in word
+
+heap
+- Heap good to get the k largest / smallest
+- use quickselect to get the kth largest (individual item)
