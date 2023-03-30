@@ -14,11 +14,71 @@ unfollow - remove from list of followed, O(1) with hash set. But if keep heap of
 
 - followers list - keep list of people following x
 
-Tactic: 
+Idea2:
+PostTweet - O(1)
+getNewsFeed - O(followers), do heap to get
+follow / unfollow - O(1) to remove from set
+
+Tactic: OOP a good idea. Can keep simple and build getNewsFeed each call, or fancier but more complex build news feed on follow
+
 """
 
 import heapq
 from collections import deque
+
+class User:
+    def __init__(self, userId):
+        self.following = set()
+        self.tweets = deque()
+        self.following.add(userId)
+
+    def addTweet(self, tweetId):
+        self.tweets.appendleft(tweetId)
+        if len(self.tweets) > 10:
+            self.tweets.pop()
+
+
+class Twitter:
+
+    def __init__(self):
+        self.users = {}
+        self.time = 0
+    
+    def getOrCreateUser(self, userId):
+        if userId not in self.users:
+            self.users[userId] = User(userId)
+        return self.users[userId]
+        
+    def postTweet(self, userId: int, tweetId: int) -> None:
+        user = self.getOrCreateUser(userId)
+        user.addTweet((self.time, tweetId))
+        self.time += 1
+        
+    def getNewsFeed(self, userId: int) -> list[int]:
+        user = self.getOrCreateUser(userId)
+        feed = [] # minheap, get rid of smallest time
+        for followerId in user.following:
+            follower = self.getOrCreateUser(followerId)
+
+            for time, tweet in follower.tweets:
+                heapq.heappush(feed, (time, tweet))
+                if len(feed) > 10:
+                    heapq.heappop(feed)
+
+        result = []
+        while feed:
+            result.append(heapq.heappop(feed)[1])
+        result.reverse()
+        return result
+
+    def follow(self, followerId: int, followeeId: int) -> None:
+        user = self.getOrCreateUser(followerId)
+        user.following.add(followeeId)
+
+    def unfollow(self, followerId: int, followeeId: int) -> None:
+        user = self.getOrCreateUser(followerId)
+        if followeeId in user.following:
+            user.following.remove(followeeId)
 
 class Twitter:
 

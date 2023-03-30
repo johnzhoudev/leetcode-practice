@@ -18,3 +18,8 @@ Trie
 heap
 - Heap good to get the k largest / smallest
 - use quickselect to get the kth largest (individual item)
+
+backtracking
+- If you want to reuse state, recursive backtrack. State, for each next, add to state, backtrack, remove from state
+- Iterative backtracking - only possible if you can save a copy of the state to the stack.
+- Backtracking is a lot like dfs

@@ -30,8 +30,72 @@ Need to return all subsets
 Idea 1: Generate sets num by num, and just add on. O(N*2^N), since O(N) to copy each subset
 Idea 2: So okay to take O(N) time to build each subset. So do backtracking alg and build. Use indexes in order to prevent duplicates.
 
+Can you do backtracking iteratively?
+- Yes, but you need to copy state. if you want to dynamically build the array, must be recursive since you need to know
+- when your "dfs" part is done to remove.
+
+Tactic: Either cascading, or recursive backtracking to save space. Think of it like a DFS. Backtrack - either add / don't add and bt 2x, or add a random one and bt once
 
 """
+
+def solveBacktracking2(nums):
+    state = []
+    solns = []
+
+    def backtrack(solns, state, i): # haven't added i yet
+        solns.append(state.copy())
+
+        for j in range(i, len(nums)):
+            state.append(nums[j])
+            backtrack(solns, state, j + 1)
+            state.pop()
+
+    backtrack(solns, state, 0)
+    return solns
+
+
+
+def solveBacktracking(nums):
+    state = []
+    solns = [[]]
+
+    def backtrack(solns, state, i):
+        # either add i, backtrack / dfs, and then remove
+
+        if i + 1 < len(nums):
+            backtrack(solns, state, i+1)
+
+        state.append(nums[i])
+        solns.append(state.copy())
+
+        if i + 1 < len(nums):
+            backtrack(solns, state, i+1)
+        
+        state.pop() # remove
+
+    backtrack(solns, state, 0)
+    return solns
+
+# Idea: backtracking alg / search alg, either include or dont' include elt
+# only copy to solution on add?
+# okay soltuion first, build and add to state. only add new sets on add
+# Cascading solution
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        state = [[]]
+
+        for num in nums:
+            toAppend = []
+            for s in state:
+                # add num
+                sCopy = s.copy()
+                sCopy.append(num)
+                toAppend.append(sCopy)
+
+            state.extend(toAppend)
+        
+        return state
+
 
 def solve2(nums):
 	out = [[]]
