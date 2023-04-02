@@ -37,7 +37,14 @@ add childs
 
 Tactic: Classic backtracking. Either do recursive or iterative. To avoid repeats, only add from idx
 
+
+--- Trying Again
+
+Tactic: Classic backtrack. What is the ith item to add, in order. Avoid repeats, only add idx.
+
 """
+
+
 
 def solveIterative(candidates, target):
 
