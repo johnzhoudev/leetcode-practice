@@ -90,3 +90,9 @@ thisSet.add('a')
 if 'a' in thisSet:
       print("hi")
 thisSet.remove('a')
+
+# lists
+list1 = [1, 2, 3, 4, 5, 10]
+list1.remove(10)
+del list1[2:3]
+print(list1)

@@ -1,3 +1,7 @@
+# Results:
+# Runtime: 49ms 84.54%
+# Memory Usage: 13.9MB 89.9%
+
 """
 
 https://leetcode.com/problems/combination-sum-ii/
@@ -18,6 +22,10 @@ Damn, not fast enough.
 
 Idea2: 
 
+- We are recursing on a lot of states where nothing was added. Instead, always be adding something in the new state
+
+Tactic: Sort first, the backtrack either add curr or skip to next new number to avoid dupe. Tip, don't advance state without adding anything. always add, else recurse on lots of states with no addition.
+
 """
 
 def solve(nums, target):
@@ -26,31 +34,25 @@ def solve(nums, target):
 
     solns = []
 
-    def backtrack(state, rollingSum, i):
-        nonlocal solns
+    def backtrack(solns, state, rollingSum, i):
         if rollingSum == target:
             solns.append(state.copy())
             return
         elif rollingSum > target or i >= len(nums):
             return
         
-        # either add current num, or skip to next unique num
 
-        # add current num, creates a new base
-        state.append(nums[i])
-        backtrack(state, rollingSum + nums[i], i+1)
-        state.pop()
+        for k in range(i, len(nums)):
 
-        # or don't add current num, and skip to next valid
-        while i+1 < len(nums) and nums[i] == nums[i + 1]:
-            i += 1
-        backtrack(state, rollingSum, i+1)
-    
-    backtrack([], 0, 0)
+            if rollingSum + nums[k] > target:
+                break
+
+            # either add current, or add a next
+            # but add first in case of repeats.
+            if k == i or nums[k] != nums[k-1]:
+                state.append(nums[k])
+                backtrack(solns, state, rollingSum + nums[k], k+1)
+                state.pop()
+
+    backtrack(solns, [], 0, 0)
     return solns
-
-        
-
-
-
-
