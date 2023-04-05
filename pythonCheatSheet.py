@@ -96,3 +96,7 @@ list1 = [1, 2, 3, 4, 5, 10]
 list1.remove(10)
 del list1[2:3]
 print(list1)
+
+## strings
+listOfStrings = ["asdf", "asdf"]
+''.join(listOfStrings)

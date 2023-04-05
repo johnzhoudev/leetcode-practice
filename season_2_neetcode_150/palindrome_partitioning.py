@@ -28,7 +28,56 @@ To build palindromes
     - Or, if single char, add one to the left.
     - This is a unique way of building a palindrome that we can backtrack on.
 
+Alt: Backtrack, either take the current string and see if it's a palindrome, or continue.
+- track index in s we're at
+- some weird caching of isPalindrome. Depending on how you search, if you check smaller results first, you will
+    have checked the inner text. so can determine if palindrome in O(1) if check inside, and letters are same
+
+Tactic: Backtrack by either choosing next palindrome (and checking isPalindrome with DP) or building palindromes by merging letters uniquely, either add 1 letter to both sides or if single letter, matching to right
+
 """
+
+def solveAlt(s):
+    cache = {}
+    def isPalindromeSlow(left, right):
+        nonlocal cache
+        if (left, right) in cache:
+            return cache[(left, right)]
+        string = s[left:right+1]
+        isPal = string[::-1] == string
+        if isPal:
+            while left <= right:
+                cache[(left, right)] = True
+                left += 1
+                right -= 1
+        return isPal
+    
+    def isPalindrome(left, right):
+        nonlocal cache
+        isPal = False
+        if (left, right) in cache:
+            return cache[(left, right)]
+        elif (((left + 1, right - 1) in cache and cache[(left+1, right-1)]) or (right - left + 1 <= 2)) and s[left] == s[right]:
+            cache[(left, right)] = True
+            return True
+        return False
+
+    solns = []
+    state = [] # no strings, also can reuse
+
+    def backtrack(solns, state, idx):
+        if idx == len(s):
+            solns.append(state.copy())
+        
+        # select the next palindrome
+        for end in range(idx, len(s)):
+            if isPalindrome(idx, end):
+                state.append(s[idx:end + 1])
+                backtrack(solns, state, end + 1)
+                state.pop()
+    
+    backtrack(solns, state, 0)
+    return solns
 
 def solve(s):
     state = [c for c in s]
