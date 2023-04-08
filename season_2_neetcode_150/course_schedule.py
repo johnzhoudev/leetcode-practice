@@ -1,3 +1,7 @@
+# Results:
+# Runtime: 96ms 82.61%
+# Memory Usage: 17.5MB 9.96%
+
 """
 
 https://leetcode.com/problems/course-schedule/
@@ -24,6 +28,9 @@ When is it impossible?
 O(n)
 
 
+time limit exceeded, so now need to maintain meta seen set for dp
+
+Tactic: Equivalent to checking DAG (topological sort). DFS, make sure no cycle. Then if done, mark node as meta-seen since if you hit again, you know it's a dag. Pro tip use array to store multi info
 """
 
 def solve(numCourses, prerequisites):
@@ -36,23 +43,32 @@ def solve(numCourses, prerequisites):
         prereqMap[f].append(t)
     
     # return true if found cycle, else false
-    def dfs(node, seen, isFound=False):
+    def dfs(node, seen):
         nonlocal prereqMap
+        nonlocal isDag
+
+        if node in isDag:
+            return False
 
         if node in seen:
             return True
         
-        seen.append(node)
-        for nextNode in prereqMap[node]
+        seen.add(node)
+        for nextNode in prereqMap[node]:
+            if dfs(nextNode, seen):
+                return True
+        # not found
+        seen.remove(node)
 
-        
-
-
-
-
-
-
-    for x in range(numCourses):
-
+        # if determine false, is dag already
+        isDag.add(node)
+        return False
     
+    isDag = set()
+    for x in range(numCourses):
+        if dfs(x, set()):
+            return False
+    return True
+    
+
 
