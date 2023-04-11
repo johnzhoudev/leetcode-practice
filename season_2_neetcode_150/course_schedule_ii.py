@@ -25,11 +25,49 @@ Space: O(n^2), keeping track of prerequisite map / adjacency list
 
 Tactic: Topological sort. do dfs, with visited, processed sets and prereqCount. only advance in dfs if prereq = 0. If didn't process all courses, cycle.
 
-Idea2: Indegree BFS topological sort may be easier.
+Idea2: Indegree BFS topological sort may be easier. Use Deque or 2 queues, and maintain indegrees
+
+Tactic: Topological sort. Easiest indegree BFS with deque or 2 queues. Or dfs with indegrees / processed, though trickier.
 """
 
 def solve(numCourses, prerequisites):
+    # find nodes with no indegrees
+    state = set(range(numCourses))
+
+    # construct adjacency map and indegrees count
+    adj = {}
+    indegrees = {}
+    for i in range(numCourses):
+        adj[i] = set()
+        indegrees[i] = 0
+    for t, f in prerequisites:
+        adj[f].add(t)
+        indegrees[t] += 1
+        if t in state:
+            state.remove(t)
     
+    # do bfs from all nodes with no indegrees, and append at each state.
+
+    visited = set()
+    newState = state
+    output = []
+    while newState:
+        state = newState
+        newState = set()
+        while state:
+            node = state.pop()
+            if node in visited:
+                continue
+            output.append(node)
+            visited.add(node)
+            for nextNode in adj[node]:
+                indegrees[nextNode] -= 1 # satisfied a prereq
+                if indegrees[nextNode] == 0:
+                    newState.add(nextNode)
+    
+    return output if len(output) == numCourses else []
+            
+
 
 def solve(numCourses, prerequisites):
     # make adjacency lists / prereq map
