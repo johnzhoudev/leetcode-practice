@@ -9,7 +9,7 @@ DP: one letter at a time
 
 - base case, 0, last added -1
 
-Tactic: 
+Tactic: dp[x][y] = subsequence length x / y chars in. dp[x][y] = dp[x-1][y-1] if nx == ny (use), else dp[x][y] = max(dp[x-1][y], dp[x][y-1])
 */
 #include <string>
 #include <vector>
