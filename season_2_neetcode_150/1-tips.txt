@@ -30,4 +30,8 @@ Graphs
 - BFS, a visited set may help speed things up.
 
 DP
+- For classic dp, think about subproblems
 - If can be solved with a search alg, can it be solved by DP? Are there subproblems?
+- DFS + memoization
+- Knapsack
+- string dp, subproblems are how to solve for prefixes of str
