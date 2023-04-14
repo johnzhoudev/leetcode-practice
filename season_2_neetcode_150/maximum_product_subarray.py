@@ -14,10 +14,55 @@ DP: product = prev product subarray * next, O(n^2) time, O(n^2) space
 - soln is between 0's, and is either everything (pos), or not including rightmost, or not including leftmost.
 O(n)
 
-DP: s[x] = largest product ending in [x]
+Idea2: iterate thru, maintain max and min so far. On negative number, max becomes num * min, min becomes num * max
+
+Tactic: keep large and small - largest / smallest prod up to last point. if num 0, reset large / small to 1. Take max.
 
 """
 
+def solve(nums):
+    res = max(nums)
+    # large and small - what's the largest / smallest prod up to the last point?
+    large = nums[0]
+    small = nums[0]
+
+    for num in nums[1:]:
+
+        if num == 0:
+            # reset large and small and skip. don't compare with res
+            large = 1
+            small = 1
+            continue
+        elif num < 0:
+            oldl = large
+            large = max(small * num, num)
+            small = min(oldl * num, num)
+        else:
+            large = max(large * num, num)
+            small = min(small * num, num)
+
+        res = max(large, res)
+    return res
+
+
+def solve(nums):
+    # max and min are for the set so far including at the number
+    l = nums[0]
+    s = nums[0]
+    overallMax = nums[0]
+
+    for num in nums[1:]:
+        if num < 0:
+            l = max(s * num, num)
+            s = min(l * num, num)
+        else:
+            l = max(l * num, num)
+            s = min(s * num, num)
+        
+        overallMax = max(l, overallMax)
+    
+    return overallMax
+        
 def solve(nums):
     left = 0
     right = 0 # inclusive

@@ -27,6 +27,7 @@ backtracking
 Graphs
 - DFS, know how
 - topological search, better with iterative bfs
+- BFS, a visited set may help speed things up.
 
 DP
 - If can be solved with a search alg, can it be solved by DP? Are there subproblems?
