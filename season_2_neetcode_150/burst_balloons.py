@@ -12,4 +12,42 @@ https://leetcode.com/problems/burst-balloons/
 
 - search alg with memoization, just set of items left. O(2^n)
 
+Idea:
+- dp[x][y] = best value bursting balloons s[x:y+1]
+- needs to have -1 and len vals
+- dp[x][y] = max(each inbetween * right outside + the best value for all subsets)
+- O(n^2) * O(n) = O(n^3)
+
+Tactic: Tricky DP, dp[x][y] = best val bursting nums[x:y+1], = max(z from x to y * right outside + best val of divided parts). Careful to iterate from smaller to larger parts
+
 """
+
+def solve(nums):
+    dp = [[0 for _ in range(len(nums) + 2)] for _ in range(len(nums) + 2)] # have dummy's on each side
+
+    # base case, for each elt, value is 1
+    # rest is 0
+    for idx, num in enumerate(nums):
+        dp[idx][idx] = num
+    
+    # do dp
+    for l in range(0, len(nums)):
+        for start in range(len(nums)):
+            end = start + l
+            if end >= len(nums):
+                break
+
+            maxVal = 0
+            left = nums[start-1] if start-1 >= 0 else 1
+            right = nums[end+1] if end+1 < len(nums) else 1
+            for last in range(start, end+1):
+                maxVal = max(maxVal, nums[last] * left * right + dp[start][last-1] + dp[last+1][end])
+            dp[start][end] = maxVal
+
+    return dp[0][len(nums) - 1]
+
+
+
+
+
+
