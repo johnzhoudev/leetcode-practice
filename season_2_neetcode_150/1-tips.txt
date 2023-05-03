@@ -30,8 +30,9 @@ Graphs
 - BFS, a visited set may help speed things up.
 
 DP
-- For classic iterative dp, think about subproblems - BOTTOM UP
+Summary: 3 types, top down dfs + memo, bottom up classic subproblems dp (think subproblems, or substr), knapsack. See if problem reducible to these.
+- For classic dp, think about subproblems
 - If can be solved with a search alg, can it be solved by DP? Are there subproblems?
-- DFS + memoization - TOP DOWN
-- Knapsack
+- DFS + memoization
+- Knapsack **
 - string dp, subproblems are how to solve for prefixes of str
