@@ -58,6 +58,10 @@ if (34 in table):
 	print("34 is in table")
 del table["asdf"]
 
+# default dict - good for adj lists
+from collections import defaultdict
+d = defaultdict(list) # default access will be a list. Can do stuff like d[asdf].append(adsf)
+
 # iterate with indices
 l = [1, 2, 3, 4, 5, 6]
 for idx, x in enumerate(l):
@@ -78,6 +82,9 @@ print(heapq.heappop(heap))
 print(heapq.heappop(heap))
 print(heap)
 # smallest element always heap[0]
+
+h = [1, 2, 3, 4, 5]
+heapq.heapify(h) # returns none. mutation
 
 
 arr = [1, 2, 3, 4, 5]

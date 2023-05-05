@@ -29,6 +29,16 @@ Graphs
 - topological search, better with iterative bfs
 - BFS, a visited set may help speed things up.
 
+- Know prim's alg MST (add min weight reachable edge at a time)
+- kruskall's alg - add min edges while no loops
+
+- dijkstras - add min total weight edge leading to new thing
+    - dijkstra's without weights is BFS
+
+- Bellman ford - can find neg cycles. Basically store weight for each node, and on each level (like a level bfs), go thru all edges and update best cost to get to a node.
+    - if still improvements after n times, neg cycle. 
+    - O(E * n)
+
 DP
 Summary: 3 types, top down dfs + memo, bottom up classic subproblems dp (think subproblems, or substr), knapsack. See if problem reducible to these.
 - For classic dp, think about subproblems
