@@ -15,6 +15,8 @@ Ideas contd: O(n) time? O(n log n)?
 
 Tactic: DP, dx = len of longest subseq ending at x. must search all before it.
 
+WHY THIS IS NOT MARKED AS DONE: Traditional dp uses O(n^2), but there exists a non-triv O(n log n) soln.
+
 """
 
 def solve(nums):
