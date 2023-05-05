@@ -13,8 +13,6 @@ Ideas
 
 Ideas contd: O(n) time? O(n log n)?
 
-WIP
-
 Tactic: DP, dx = len of longest subseq ending at x. must search all before it.
 
 """
@@ -35,3 +33,26 @@ def solve(nums):
 
 
 
+
+"""
+Try 2
+
+- len of longest strictly inc subsequence
+
+dp[i] = longest inc subs ending at nums[i]
+dp[i] = max dp[k] for k in 1 to i
+
+O(n^2)
+
+"""
+
+def solve(nums):
+    dp = [0 for _ in range(len(nums))]
+
+    for idx, num in enumerate(nums):
+        best = 1
+        for k in range(0, idx):
+            if nums[k] < num:
+                best = max(best, dp[k] + 1)
+        dp[idx] = best
+    return max(dp)
