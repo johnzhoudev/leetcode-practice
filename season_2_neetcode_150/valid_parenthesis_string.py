@@ -14,6 +14,7 @@ Alt Idea:
 - consider a search alg with count of open, but notice when you branch, you are either -1, 0 or 1 change.
 - So, just keep a range. When you branch it's always a continuous range. If one branch has 0, all good.
 
+Tactic: think search alg, but you know it's a range. When you branch on *, either -1, 0 or 1 open bracket. As long as range contains 0, all good. Else, track manually. first ), then "", then (
 """
 
 def solve(s):
