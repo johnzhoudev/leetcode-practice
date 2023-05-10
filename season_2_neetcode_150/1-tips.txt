@@ -51,3 +51,7 @@ Greedy
 - Impl can be tricky, make sure you properly define invariants and think about edge cases
     - Define whole approach and verify correctness before implementing.
 - Sometimes, you need to figure out the key / simple way / invariant for the algorithm. Might be a different way of seeing things.
+
+Intervals
+- know how to check if intervals are overlapping
+- visualize and think of straightforward way. More straightforward, the better.
