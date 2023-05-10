@@ -23,7 +23,7 @@ Ideas
     - so also sort, to some extent
     - because otherwise how to get min
 
-
+Tactic: Store counts in hash table and loop thru from smallest numbers, and decrease counts. can use minheap or maybe just sort.
 
 """
 
@@ -38,6 +38,17 @@ def solve(hand, groupSize):
     sortedNums = sorted(list(set(hand)))
 
     for num in sortedNums:
-        while count[num]
+        while count[num] > 0:
+            numAdjacent = 0
+            currNum = num # not included yet
+            while numAdjacent < groupSize:
+                if count[currNum] > 0:
+                    numAdjacent += 1
+                    count[currNum] -= 1
+                    currNum += 1
+                else:
+                    return False # break, found a group without a consecutive thing
+    
+    return True
 
     
