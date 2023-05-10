@@ -46,3 +46,8 @@ Summary: 3 types, top down dfs + memo, bottom up classic subproblems dp (think s
 - DFS + memoization
 - Knapsack **
 - string dp, subproblems are how to solve for prefixes of str
+
+Greedy
+- Impl can be tricky, make sure you properly define invariants and think about edge cases
+    - Define whole approach and verify correctness before implementing.
+- Sometimes, you need to figure out the key / simple way / invariant for the algorithm. Might be a different way of seeing things.
