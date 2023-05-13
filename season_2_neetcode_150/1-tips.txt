@@ -54,4 +54,6 @@ Greedy
 
 Intervals
 - know how to check if intervals are overlapping
-- visualize and think of straightforward way. More straightforward, the better.
+- visualize and think of straightforward way. More straightforward, the better. Draw a fuckin picture.
+
+- sort by end, or start?
