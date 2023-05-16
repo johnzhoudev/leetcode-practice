@@ -26,10 +26,76 @@ Idea:
     - if overlaps in
         - must be smaller, cut previous, put new, and put rest back in with size
 - then do binary search on big part
+- Scrap, too hard to code
 
+Idea 2:
+- From neetcode, had to look it up
+- Sort intervals and queries
+- then go interval by interval and add them to a heap
+    - if interval left of point, drop
+    - if interval contains point, add
+    - if interval right of point, leave
+- Then, pop from heap until top has min size and also includes interval
+    - tiebreakers, by endpoint? **
+    - and output that
+
+Tactic: Tricky q. sort intervals and queries and go in order. put intervals in heap while q inside, then pop from heap if interval not in. remove by endpoint tiebreaker.
 """
 
 import heapq
+
+def solve(intervals, queries):
+    # first sort intervals and queries
+    intervals.sort(key=lambda x : x[0])
+
+    # need to keep track of index
+    output = [-1 for _ in range(len(queries))]
+    queries = [(q, idx) for idx, q in enumerate(queries)]
+    queries.sort()
+
+    # create heap and state
+    smallest = []
+
+    # go thru main while loop
+    currIdx = 0
+    for q, idx in queries:
+
+        # first, add all relevant intervals
+        # add all intervals that contain q, and drop all that are before
+        while currIdx < len(intervals) and intervals[currIdx][0] <= q:
+            interval = intervals[currIdx]
+
+            # if interval left of q, drop
+            # if interval[1] < q:
+            #     currIdx += 1
+
+            # if interval contains q, add
+            if interval[0] <= q and interval[1] >= q:
+                heapq.heappush(smallest, (interval[1] - interval[0] + 1, interval[1])) # size, endpoint (tiebreaker)
+
+            currIdx += 1
+
+        # while does not contain q
+        # smallest contains all that start before q, so just check end
+        while smallest and smallest[0][1] < q:
+            heapq.heappop(smallest)
+        
+        if smallest:
+            output[idx] = (smallest[0][0])
+        # else:
+            # output.append(-1)
+    
+    return output
+
+
+        
+
+
+
+    
+
+
+
 
 def solve(intervals, queries):
     minIntervals = []

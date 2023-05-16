@@ -83,6 +83,8 @@ print(heapq.heappop(heap))
 print(heap)
 # smallest element always heap[0]
 
+# TIES are broken by 2nd term in pair!
+
 h = [1, 2, 3, 4, 5]
 heapq.heapify(h) # returns none. mutation
 
