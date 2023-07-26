@@ -5,8 +5,12 @@ I usually write them in python, but I'm curious to learn and try them in rust to
 Season 1: June 2022 - September 12, 2022 (unfinished!)
 - https://leetcode.com/list/xo2bgr0r/
 
-Season 2: November 13, 2022 - Present
+Season 2: November 13, 2022 - April 1, 2023
+- https://neetcode.io/practice
+
+Season 3 (Neetcode all): July 26, 2023 - Present
 - https://neetcode.io/practice
 
 Cheat Sheet:
 - https://docs.google.com/spreadsheets/d/1RCn1HdMv6IgS4Fbs1xhQuGxzoNLjqWOjWN6BPvX2LUc/edit?usp=sharing
+- https://docs.google.com/spreadsheets/d/1n5QNZZtcX0hzh_9VM31nKMMDiKJPlAQZSPKk7B_QPvM/edit#gid=0
