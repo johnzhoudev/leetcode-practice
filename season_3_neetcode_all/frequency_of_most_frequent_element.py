@@ -29,6 +29,8 @@ yolo O(n log n), hard to do without sort
 
 Trick: keep track of sum and curr * num in range, if larger than k, can't fit
 
+Tactic: Sliding window, think graphically and area of sorted array. either subtract change * length to adjust, or keep track of sum. fixed sliding window handy.
+
 """
 
 # fixed sliding window (grow only)
@@ -37,7 +39,28 @@ Trick: keep track of sum and curr * num in range, if larger than k, can't fit
 def solve(nums, k):
     nums.sort()
 
-    # 
+    # fixed sliding window
+    # if valid, extend
+    # if not valid, advance both and slide
+    right = len(nums) - 1
+    left = right # inclusive
+    total = nums[right]
+
+    maxFreq = 1
+
+    while left >= 0 and right >= left:
+
+        if ((right - left + 1) * nums[right]) - total > k: # if over budget, shift
+            total -= nums[right]
+            right -= 1
+            left -= 1
+            total += nums[left]
+        else: # under budget, add
+            maxFreq = max(maxFreq, right - left + 1)
+            left -= 1
+            total += nums[left]
+        
+    return maxFreq
 
 # Shrinkable sliding window
 # standard, open while valid, shrink while invalid 
