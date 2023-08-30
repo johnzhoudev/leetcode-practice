@@ -109,3 +109,7 @@ print(list1)
 ## strings
 listOfStrings = ["asdf", "asdf"]
 ''.join(listOfStrings)
+
+# WARN: DO NOT DO THIS
+print([[0] * 10] * 10) # * makes a shallow copy of the object. [0] is okay, but afterwards it's all the same array.
+# use regular for loop init instead
