@@ -22,7 +22,7 @@ SQUARE! not rectangle
 
 Tip: Use hash table / defaultdict instead of 2d array
 
-Tactic: 
+Tactic: store point counts using HASH TABLE / defaultdict, then for each query check opposite point and see if corners exist
 
 
 """
