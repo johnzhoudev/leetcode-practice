@@ -46,8 +46,43 @@ So in general, f(4) - 4f(3) + 4 choose 2 f(2) + ...
 
 choice between picking unpicked and picked already, affects pool later...
 
+# New idea: DP
 
+state[i][j] = num ways to play i songs in j slots (guaranteed all played)
+state[i][j] = state[i][j-1] * (i-k) // j-1 slots, play all songs + a random song from pool
++ state[i-1][j-1] * i * 1 // last song hasn't been played yet, so previous is 
+pick 1 song missing (i) * ways. all unique since unique combos, since guaranteed to play all songs
+
+base
+state[1][j] = 1
+state[k][k] = k!
+
+Tactic: dp[i][j] = num ways to play i songs in j slots, guaranteed all played. Careful, i-k case, could be neg so max(0, i-k)
+Careful: in i-k case, could be negative. don't assume this is valid. in which case, take max with 0
 """
+
+# DP Solution
+mod = 10**9 + 7
+def fact(n):
+    if n == 1 or n == 0: return 1
+    return (n * fact(n-1)) % mod
+
+def solve(n, goal, k):
+    # init base cases
+    state = [[0 for _ in range(goal+1)] for _ in range(n+1)]
+    for j in range(goal+1):
+        state[1][j] = 1 if k == 0 or j == 1 else 0
+    for i in range(n+1):
+        state[i][i] = fact(i) % mod
+    
+    # solve
+    for i in range(2, n+1):
+        for j in range(i+1, goal+1):
+            state[i][j] = (state[i][j-1] * max(i-k, 0) + state[i-1][j-1] * i) % mod
+    return state[n][goal]
+
+    
+
 
 # X doesn't work
 def solve(n, goal, k):
