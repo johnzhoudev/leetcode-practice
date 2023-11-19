@@ -15,6 +15,7 @@
 - vector
 - binary tree
 - graph
+- Binary search
 
 https://www.reddit.com/r/leetcode/comments/z3gfxf/anyone_knows_how_to_solve_this/
 
