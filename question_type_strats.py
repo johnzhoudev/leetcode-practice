@@ -30,3 +30,8 @@ def slide(arr):
 # - Longest increasing subsequence - binary search on sizes!!!
 # - otherwise should be straightforward
         
+
+# Topological Sort
+# Course Schedule, can get topological sort using DFS and loop checking. Maintain visited arr and seen_outside, see courseSchedule.py
+# - to get topological sort using DFS, use finishing order as reverse order. Things finished can be added to back.
+# - remember, may be easier with indegrees and outdegrees - bfs way to get topological sort

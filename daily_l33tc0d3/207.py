@@ -13,23 +13,39 @@ Basically, topological sort = no loops
     - if you see a node from outside the loop, end. cannot loop around else would have found earlier.
     so O(n)
 
+- careful, to detect loops could have diamond case. so need to pop off the visited queue. loop only if you return to your current path, not all visited
 
+Better: 
 """
 
-def solve(numCourses, prereqs):
+from collections import defaultdict
 
-    visited = set()
-    def dfs(curr):
+def solve(numCourses, prereqs):
+    # make adjacency lists
+    adj = defaultdict(set)
+    for after, before in prereqs:
+        adj[before].add(after)
+
+    seen_outside_loop = set()
+    def dfs(curr, visited):
         if curr in visited:
             return False # has loop
+        elif curr in seen_outside_loop:
+            return True # fine
 
         visited.add(curr)
-
-        for j in range(numCourses):
-            if j == curr: continue
-            dfs
-
-
-    # for course in range(numCourses):
+        for next in adj[curr]:
+            if dfs(next, visited) == False:
+                return False
+        visited.remove(curr)
+        seen_outside_loop.add(curr) # after exploring a node, if all good, mark as good
+        return True
+        
+    for course in range(numCourses):
+        visited = set()
+        if dfs(course, visited) == False:
+            return False
+    
+    return True
 
 
