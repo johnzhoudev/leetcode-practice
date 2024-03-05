@@ -25,6 +25,8 @@ def slide(arr):
 # if looking for max size, each time either extend, or shift. Since don't need to consider smaller
 # see Frequency of most frequent element
 
+# Monotonically Decreasing Queue sometimes useful to find max of sliding window
+
 # Binary Search Type Questions
 # - KOKO eating bananas, binary search on sorted elts and verify in O(n) time
 # - Longest increasing subsequence - binary search on sizes!!!
