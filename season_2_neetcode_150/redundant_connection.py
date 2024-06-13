@@ -28,6 +28,10 @@ Union Find Algorithm
     - increment rank of parent
 - can compress path during a search, the searched elements just attach to parent
 
+Efficiencies:
+- Appending backtrace - shortens
+- Using rank - append smaller subtree to bigger subtree
+
 Time: O(log n) for each find and join, with rank. So O(n log n), since we potentially join all
 
 Tactic: Add edges one by one, union find. Union find using rank, compression, parent arr.
