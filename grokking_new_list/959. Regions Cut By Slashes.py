@@ -11,12 +11,53 @@ Ideas:
 - each square has top and bottom, connected by left and right
 - so still dfs, but visited has diff
 
-- Fuck it, make a new graph
+- Yolo, make a new graph
 - node - 
 
 O(n) time, O(n) space (to store visited set)
 
+Tactic: Either create new graph manually, or upscale 3x3
+
 """
+
+# Upscale method to 3x3
+def solve(grid):
+  n = len(grid)
+
+  # upscale
+  newGrid = [[' ' for _ in range(3*n)] for _ in range(3 *n)]
+  for i in range(n):
+    for j in range(n):
+      if grid[i][j] == '\\':
+        newGrid[i*3][j*3] = '\\'
+        newGrid[i*3 + 1][j*3 + 1] = '\\'
+        newGrid[i*3 + 2][j*3 + 2] = '\\'
+      elif grid[i][j] == '/':
+        newGrid[i*3][j*3 + 2] = '/'
+        newGrid[i*3 + 1][j*3 + 1] = '/'
+        newGrid[i*3 + 2][j*3] = '/'
+  
+  visited = [[False for _ in range(3*n)] for _ in range(3*n)]
+
+  directions = [(-1, 0), (0, -1), (1, 0), (0, 1)]
+  def dfs(i, j):
+    if i < 0 or i >= 3 * n or j < 0 or j >= 3*n: return
+    if visited[i][j]: return
+    if newGrid[i][j] != ' ': return
+    visited[i][j] = True
+    for dx, dy in directions:
+      dfs(i + dx, j + dy)
+  
+  numIslands = 0
+  for i in range(3 * n):
+    for j in range(3 * n):
+      if visited[i][j] or newGrid[i][j] != ' ': continue
+      numIslands += 1
+      dfs(i, j)
+  
+  return numIslands
+
+
 
 class Node():
   def __init__(self):
@@ -62,27 +103,25 @@ def solve(grid):
     for j in range(n):
       square = grid[i][j]
       if square == ' ':
-        newGrid[i][j][0].next.append(goLeft(i, j))
-        newGrid[i][j][0].next.append(goRight(i, j))
-        newGrid[i][j][0].next.append(goUp(i, j))
-        newGrid[i][j][0].next.append(goDown(i, j))
+        if goLeft(i, j): newGrid[i][j][0].next.append(goLeft(i, j))
+        if goRight(i, j): newGrid[i][j][0].next.append(goRight(i, j))
+        if goUp(i, j): newGrid[i][j][0].next.append(goUp(i, j))
+        if goDown(i, j): newGrid[i][j][0].next.append(goDown(i, j))
       elif square == '\\':
-        newGrid[i][j][1].next.append(goLeft(i, j))
-        newGrid[i][j][0].next.append(goRight(i, j))
-        newGrid[i][j][0].next.append(goUp(i, j))
-        newGrid[i][j][1].next.append(goDown(i, j))
+        if goLeft(i, j): newGrid[i][j][1].next.append(goLeft(i, j))
+        if goRight(i, j): newGrid[i][j][0].next.append(goRight(i, j))
+        if goUp(i, j): newGrid[i][j][0].next.append(goUp(i, j))
+        if goDown(i, j): newGrid[i][j][1].next.append(goDown(i, j))
       elif square == '/':
-        newGrid[i][j][0].next.append(goLeft(i, j))
-        newGrid[i][j][1].next.append(goRight(i, j))
-        newGrid[i][j][0].next.append(goUp(i, j))
-        newGrid[i][j][1].next.append(goDown(i, j))
+        if goLeft(i, j): newGrid[i][j][0].next.append(goLeft(i, j))
+        if goRight(i, j): newGrid[i][j][1].next.append(goRight(i, j))
+        if goUp(i, j): newGrid[i][j][0].next.append(goUp(i, j))
+        if goDown(i, j): newGrid[i][j][1].next.append(goDown(i, j))
   
   # Now dfs
   visited = set()
 
   def dfs(currNode):
-    print(currNode)
-    print(currNode.next)
     if currNode in visited: return
     visited.add(currNode)
 
@@ -99,6 +138,4 @@ def solve(grid):
     
   return numIslands
 
-  
-
-solve([" /","/ "])
+# print(solve([" /","/ "]))
