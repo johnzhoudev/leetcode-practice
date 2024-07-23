@@ -14,3 +14,4 @@ Leetcode Progression Ideas:
 - Inserting interval, collect left and right and overlap min max - 57. Insert Interval
 - Merging Intervals - sort and add, if overlapping then min max merge with last. - 56. Merge Intervals 
 - Removing until non overlapping - Greedily take with earliest end - 435. Non-overlapping intervals
+- HARD: Intervals and queries - 1851 Minimum interval to include each query
