@@ -15,3 +15,6 @@ Leetcode Progression Ideas:
 - Merging Intervals - sort and add, if overlapping then min max merge with last. - 56. Merge Intervals 
 - Removing until non overlapping - Greedily take with earliest end - 435. Non-overlapping intervals
 - HARD: Intervals and queries - 1851 Minimum interval to include each query
+
+## Backtracking
+- General backtracing with subsets - 39. Combination sum, 78 Subsets
