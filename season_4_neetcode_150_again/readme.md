@@ -17,4 +17,5 @@ Leetcode Progression Ideas:
 - HARD: Intervals and queries - 1851 Minimum interval to include each query
 
 ## Backtracking
-- General backtracing with subsets - 39. Combination sum, 78 Subsets
+- General backtracing with subsets - 39. Combination sum, 78 Subsets, 46 permutations
+- Subsets backtracing with duplicates, use idx and count - or either add, or advance to next non dupe. - 90 subsets ii
