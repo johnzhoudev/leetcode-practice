@@ -19,3 +19,4 @@ Leetcode Progression Ideas:
 ## Backtracking
 - General backtracing with subsets - 39. Combination sum, 78 Subsets, 46 permutations
 - Subsets backtracing with duplicates, use idx and count - or either add, or advance to next non dupe. - 90 subsets ii, 40. combination sum 2
+- Grid backtracking - 79. word search
