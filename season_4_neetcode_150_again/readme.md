@@ -21,3 +21,4 @@ Leetcode Progression Ideas:
 - Subsets backtracing with duplicates, use idx and count - or either add, or advance to next non dupe. - 90 subsets ii, 40. combination sum 2
 - Grid backtracking - 79. word search
 - Palindrome partitioning - try to see if prefix is palindrome, and recurse on remaining.
+- N Queens grid backtracking, advance row and use y intercept to track diagonals
