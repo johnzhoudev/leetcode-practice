@@ -22,3 +22,6 @@ Leetcode Progression Ideas:
 - Grid backtracking - 79. word search
 - Palindrome partitioning - try to see if prefix is palindrome, and recurse on remaining.
 - N Queens grid backtracking, advance row and use y intercept to track diagonals
+
+## Basic Graphs
+- DFS - number of islands 200 / max area of island 695
