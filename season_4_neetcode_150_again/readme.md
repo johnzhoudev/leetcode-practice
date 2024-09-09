@@ -26,3 +26,4 @@ Leetcode Progression Ideas:
 ## Basic Graphs
 - DFS - number of islands 200 / max area of island 695
 - DFS Clone Graph - 133 Clone Graph
+- BFS from multiple points - Walls and Gates
