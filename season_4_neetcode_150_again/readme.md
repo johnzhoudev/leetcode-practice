@@ -28,3 +28,5 @@ Leetcode Progression Ideas:
 - DFS Clone Graph - 133 Clone Graph
 - BFS from multiple points with cool bfs for size trick - Walls and Gates, 994. Rotting Oranges
 - DFS / BFS from ocean - 417. Pacific Atlantic Water Flow, surrounded regions 130
+- Topological Sort with DFS / indegrees - 207 Course Schedule, 210 Course Schedule 2
+- Cycle detection in undirected graph / remove back edge - Graph Valid tree
