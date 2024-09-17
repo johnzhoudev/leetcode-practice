@@ -1,6 +1,8 @@
 
 # SQL Cheat Sheet
 
+https://leetcode.com/studyplan/top-sql-50/
+
 ## Selects
 - != doesn't account for NULL - see 584
 - select asdf as jkl - for output labelling!
