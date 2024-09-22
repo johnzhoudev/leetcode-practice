@@ -10,10 +10,17 @@ https://leetcode.com/studyplan/top-sql-50/
 
 ## Joins
 - Left join to find values null if not exist - 1581
-- DATE_SUB / DATE_ADD(date, interval 1 day)
+- DATE_SUB / DATE_ADD(date, interval 1 day) - 197
 - round(item, 2)
 - start and end timestamps - 1661
 
 - count(*) counts nulls, count(col) does not count nulls! - 1280
 - group by and having count() - 570
 - case when cond then 1 when then else, coalesce or mysql use if(cond, true, false) - 1934
+
+## Selects
+- % operator, 620
+- Comparing dates with <>=, 1251
+- Scalar subquery, 1633
+- where (a, b) in (subquery), min(date) - 1174, 550
+- date sub - 550
