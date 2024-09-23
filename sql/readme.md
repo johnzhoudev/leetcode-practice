@@ -24,3 +24,7 @@ https://leetcode.com/studyplan/top-sql-50/
 - Scalar subquery, 1633
 - where (a, b) in (subquery), min(date) - 1174, 550
 - date sub - 550
+
+## Sorting and Grouping
+- queries with aggregates, aggregate func, rest must be in group by - 1070
+- group by before having clause - 596
