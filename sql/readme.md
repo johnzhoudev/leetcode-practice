@@ -28,3 +28,8 @@ https://leetcode.com/studyplan/top-sql-50/
 ## Sorting and Grouping
 - queries with aggregates, aggregate func, rest must be in group by - 1070
 - group by before having clause - 596
+
+## Advanced Selects
+- unions! 1789, 1907
+- cumulative window functions sum over order by 1204
+- where clause, and group by where filters out - 1164

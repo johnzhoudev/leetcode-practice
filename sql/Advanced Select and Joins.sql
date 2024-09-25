@@ -77,3 +77,52 @@ select product_id, 10 as price from Products group by product_id having min(chan
 -- union, also example of using where and group by!
 
 -- 1204. Last Person to Fit in the Bus
+
+with weights as (
+    select q1.turn, sum(q2.weight) as totalWeight from Queue q1
+    join Queue q2
+    on q1.turn >= q2.turn
+    group by q1.turn
+    having totalWeight <= 1000
+)
+
+select person_name from Queue q
+join weights w
+on w.turn = q.turn
+where w.totalWeight = (select max(totalWeight) from weights)
+
+select q1.person_name from Queue q1
+join Queue q2
+on q1.turn >= q2.turn
+group by q1.turn
+having sum(q2.weight) <= 1000
+order by sum(q2.weight) DESC
+limit 1
+-- better - join and group by q1.turn! Genius! And order by, limit 1 to get max!!!
+
+with cumsum as (
+    select person_name, 
+    sum(weight) over (order by turn) as cumweight
+    from Queue
+)
+select person_name from cumsum
+where cumweight <= 1000
+order by cumweight desc
+limit 1
+-- order by as cumulative window function!!!
+
+-- 1907. Count Salary Categories
+
+select 'Low Salary'as category, count(account_id) as accounts_count
+from accounts
+where income < 20000
+union
+select 'Average Salary'as category, count(account_id) as accounts_count
+from accounts
+where income >= 20000 and income <= 50000
+union
+select 'High Salary'as category, count(account_id) as accounts_count
+from accounts
+where income > 50000
+
+-- unions!
