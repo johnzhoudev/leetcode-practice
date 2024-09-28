@@ -44,7 +44,11 @@ def solve(edges):
     
     def union(i, j):
         parentI = parent(i)
-        parentTable[parentI] = parent(j)
+        parentJ = parent(j)
+        if rank[parentI] > rank[parentJ]:
+            parentTable[parentJ] = parentI
+        else:
+            parentTable[parentI] = parentJ
     
     # now solve
     for u, v in edges:
