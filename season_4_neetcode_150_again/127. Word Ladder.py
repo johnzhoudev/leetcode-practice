@@ -15,7 +15,45 @@ Idea:
 - nah, better to build a graph otherwise repeating checks
 
 Time: O(n) where n is number of words to do dfs + O(n^2) to make the adj list
+
+Wildcard strat
+Time: O(n) to make adj list!
+Traversal, O(n) too? every word gets added once max
+
+Tactic: Wildcard characters!!!
 """
+
+
+def solve(beginWord, endWord, wordList):
+    # make the wildcard adj lists
+    adjList = defaultdict(list)
+
+    # O(n)
+    for word in wordList:
+        for i in range(len(word)):
+            wordKey = word[:i] + "*" + word[i+1:]
+            adjList[wordKey] += [word]
+    
+    # now process
+    curr = [beginWord]
+    visited = set()
+    level = 1
+    while curr:
+        next = []
+        for word in curr:
+            if word in visited: continue
+            if word == endWord: return level
+
+            visited.add(word)
+
+            for i in range(len(word)):
+                wordKey = word[:i] + "*" + word[i+1:]
+                next += adjList[wordKey]
+        curr = next
+        level += 1
+    
+    return 0
+
 
 from collections import defaultdict
 def solve(beginWord, endWord, wordList):
@@ -39,8 +77,32 @@ def solve(beginWord, endWord, wordList):
                 adjList[word] += [word2]
                 adjList[word2] += [word]
     
-    # Now do dfs
+    # add from beginword
+    for word in wordList:
+        if compareWord(beginWord, word):
+            adjList[beginWord] += [word]
+    
+    # Now do bfs
     state = [beginWord]
+    visited = set()
+    numIter = 1
+
+    while state:
+        next = []
+        for word in state:
+            if word in visited: continue
+            if word == endWord: return numIter
+
+            visited.add(word)
+            for nextWord in adjList[word]:
+                next.append(nextWord)
+        
+        numIter += 1
+        state = next
+    
+    return 0
+
+
 
 
 

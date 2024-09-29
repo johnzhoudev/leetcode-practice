@@ -31,3 +31,7 @@ Leetcode Progression Ideas:
 - Topological Sort with DFS / indegrees - 207 Course Schedule, 210 Course Schedule 2
 - Cycle detection in undirected graph / remove back edge - Graph Valid tree
 - Union Find with Rank and Collapse - Redundant Connection
+- WordLadder wildcard tactic!!! - 127
+
+
+Cheat Sheet: https://docs.google.com/spreadsheets/d/1LaQWNzYnkYukygLMTQt7lBV11lc1F30hTDcCrjswn-U/edit?gid=0#gid=0
