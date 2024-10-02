@@ -33,5 +33,10 @@ Leetcode Progression Ideas:
 - Union Find with Rank and Collapse - Redundant Connection
 - WordLadder wildcard tactic!!! - 127
 
+## Advanced Graphs
+- Eulerian Path Alg! - 332
+- Prim vs Kruskal alg for finding Min Spanning Tree - 1584
+- Dijkstra's alg - min path to all dests - 743
+
 
 Cheat Sheet: https://docs.google.com/spreadsheets/d/1LaQWNzYnkYukygLMTQt7lBV11lc1F30hTDcCrjswn-U/edit?gid=0#gid=0
