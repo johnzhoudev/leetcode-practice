@@ -37,6 +37,12 @@ Leetcode Progression Ideas:
 - Eulerian Path Alg! - 332
 - Prim vs Kruskal alg for finding Min Spanning Tree - 1584
 - Dijkstra's alg - min path to all dests - 743
+- Topological sort with DFS or indegrees - Alien dictionary
+- bfs iterative? - 787 cheapest flights within k stops
+
+## 1D DP
+- Classic DP - 198 house robber, 746 Min cost climbing stairs
+- House Robber circular - do 2 solves, 1 with first removed and 1 with last removed - 213
 
 
 Cheat Sheet: https://docs.google.com/spreadsheets/d/1LaQWNzYnkYukygLMTQt7lBV11lc1F30hTDcCrjswn-U/edit?gid=0#gid=0
