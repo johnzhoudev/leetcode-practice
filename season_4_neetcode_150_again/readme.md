@@ -43,6 +43,10 @@ Leetcode Progression Ideas:
 ## 1D DP
 - Classic DP - 198 house robber, 746 Min cost climbing stairs
 - House Robber circular - do 2 solves, 1 with first removed and 1 with last removed - 213
+- Longest Palindromic Substring - Not even DP, check palindromes from middle - 5
+- *** Decode Ways - if 1-9, add dp[i-1]. If 10-26, add dp[i-2]. If nothing added, return 0. TRICKY!
+- Knapsack problem - 322 Coin Change 
+- Maximum product subarray - keep max and min values in dp - 152 Maximum Product Subarray
 
 
 Cheat Sheet: https://docs.google.com/spreadsheets/d/1LaQWNzYnkYukygLMTQt7lBV11lc1F30hTDcCrjswn-U/edit?gid=0#gid=0
