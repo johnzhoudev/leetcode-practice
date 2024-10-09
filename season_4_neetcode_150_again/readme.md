@@ -47,6 +47,10 @@ Leetcode Progression Ideas:
 - *** Decode Ways - if 1-9, add dp[i-1]. If 10-26, add dp[i-2]. If nothing added, return 0. TRICKY!
 - Knapsack problem - 322 Coin Change 
 - Maximum product subarray - keep max and min values in dp - 152 Maximum Product Subarray
+- Check if string can be made of words - 139 Word Break
+- 01 Knapsack, or expanding set of reachable sums - 416 Partition Equal Subset Sum
+
+## 2D DP
 
 
 Cheat Sheet: https://docs.google.com/spreadsheets/d/1LaQWNzYnkYukygLMTQt7lBV11lc1F30hTDcCrjswn-U/edit?gid=0#gid=0
