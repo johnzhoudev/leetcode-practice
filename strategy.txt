@@ -22,3 +22,11 @@ https://www.reddit.com/r/leetcode/comments/z3gfxf/anyone_knows_how_to_solve_this
 
 - Probably better to do mediums for now to really hit on themes
 - then do hards.
+
+
+DP Type Questions:
+0/1 Knapsack
+Unbounded Knapsack
+Shortest Path (eg: Unique Paths I/II)
+Fibonacci Sequence (eg: House Thief, Jump Game)
+Longest Common Substring/Subsequeunce

@@ -16,7 +16,8 @@ s[x] = min(s[x-coin denom])
 O(amount, 10^4)
 Space: O(amount)
 
-Tactic: DP on amount, backpack problem. s[x] = fewest coins making amount x, s[x] = min(s[x - coin]) over all coins
+Tactic: 
+DP on amount, backpack problem. s[x] = fewest coins making amount x, s[x] = min(s[x - coin]) over all coins
 """
 
 def solve(coins, amount):
