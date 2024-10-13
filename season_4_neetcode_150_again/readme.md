@@ -51,11 +51,13 @@ Leetcode Progression Ideas:
 - 01 Knapsack, or expanding set of reachable sums - 416 Partition Equal Subset Sum
 
 ## 2D DP
-- Longest Common Subsequence - build up, use or not use - 1143
+- Longest Common Subsequence - build up, use or not use - 1143, 115. distinct subsequences
 - DFS with memoization / state machine - Best time to buy or sell stock with cooldown 309
 - knapsack with unlimited coins - coin change 2 518
 - DFS with Memoization for Knapsack like question - 494 Target Sum
-- interleaving string - dfs with memoization - 97 interleaving string
+- interleaving string - dfs with memoization - 97 interleaving string, 329 longest path in matrix
+- Burst Balloons - Interval DP but pivot is the LAST item removed, account for left and right edges - 312 Burst Balloons
+- Kleene Star regex handling - 10 Reg Exp Matching
 
 
 Cheat Sheet: https://docs.google.com/spreadsheets/d/1LaQWNzYnkYukygLMTQt7lBV11lc1F30hTDcCrjswn-U/edit?gid=0#gid=0
