@@ -59,5 +59,15 @@ Leetcode Progression Ideas:
 - Burst Balloons - Interval DP but pivot is the LAST item removed, account for left and right edges - 312 Burst Balloons
 - Kleene Star regex handling - 10 Reg Exp Matching
 
+## Greedy
+- Maximum Subarray greedy, take total + curr or just curr
+- Jump game just expand highest
+- Gas stations - total gas - cost >= 0 => solution! 134
+- Hand of straights - hashes and sorting
+- Merge triplets - don't need to sort! Just filter out anything with higher values
+
+## Arrays and Hashing
+- Encoding and Decoding strings utf-8 - add char count and # prefix
+
 
 Cheat Sheet: https://docs.google.com/spreadsheets/d/1LaQWNzYnkYukygLMTQt7lBV11lc1F30hTDcCrjswn-U/edit?gid=0#gid=0
