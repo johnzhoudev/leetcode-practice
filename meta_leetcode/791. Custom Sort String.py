@@ -14,6 +14,9 @@ just make a bucket sort type situation
 O(n) time, n is s
 O(n) space
 
+Tactic:
+Use hashmap to count order chars. Careful with chars not in order.
+
 """
 from collections import defaultdict
 

@@ -11,7 +11,7 @@ put - get from hash table, remove
     - then add to front
 
 Tactic:
-DoublyLinkedList - remove, removeFromBack, addToFront. And hash table of key -> node(key, val)
+DoublyLinkedList - remove, removeFromBack, addToFront. And hash table of key -> node(key, val).
 """
 
 class ListNode:
