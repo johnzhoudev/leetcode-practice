@@ -24,8 +24,59 @@ Base case: 1 element
 best = max best of left, best of right, best partial left + best partial right
 
 """
+def solve(nums):
+    # O(n log n) runtime since have to split recursively
+    
+
+    def helper(l, r): # return total, best_from_left, best_from_right, best. Array indices exclusive
+        length = r - l
+        if length == 1:
+            x = nums[l]
+            return x, x, x, x
+        
+        # Else, split in 2
+        pivot = l + ((r - l) // 2)
+        left = helper(l, pivot) # exclusive
+        right = helper(pivot, r) # bias right, right is larger
+
+        total = left[0] + right[0]
+        best_from_left = max(left[1], left[0] + right[1])
+        best_from_right = max(right[2], right[0] + left[2])
+        best = max(left[3], right[3], left[2] + right[1])
+        return total, best_from_left, best_from_right, best
+    
+    res = helper(0, len(nums))
+    return res[3]
+
 
 # def solve(nums):
+
+#     def helper(arr): # return total, best_from_left, best_from_right, best
+#         if len(arr) == 1:
+#             return arr[0], arr[0], arr[0], arr[0]
+        
+#         # Else, split in 2
+#         left = helper(arr[:len(arr)-1])
+#         right = helper(arr[len(arr)-1:]) # bias left, right is smaller
+
+#         total = left[0] + right[0]
+#         best_from_left = max(left[1], left[0] + right[1])
+#         best_from_right = max(right[2], right[0] + left[2])
+#         best = max(left[3], right[3], left[2] + right[1])
+#         return total, best_from_left, best_from_right, best
+    
+#     res = helper(nums)
+#     return res[3]
+
+
+def validate(arr, expected):
+    res = solve(arr)
+    if res != expected:
+        print(f"{arr} generated {res}, expected {expected}")
+
+
+validate([-2,1,-3,4,-1,2,1,-5,4], 6)
+
 
 
 def solve(nums):
