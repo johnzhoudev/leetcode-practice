@@ -15,9 +15,33 @@ Better: Store trie of all substrings for all words, and check?
 
 TODO:
 - Suffix tree impl
-- KMP Impl
+
+
+KMP Impl
+- Make Longest Prefix Suffix LPS table - at this index of the pattern string, what is the longest suffix that is also a prefix (but not the whole word)
+- then when comparing, on mismatch, take matched portion and set pattern comp idx to that idx. Else, if LPS is 0, then no prefix matches
+a suffix and therefore advance main word and reset to 0
+Time complexity: Each letter in the compared string (not pattern) is only looked at once! So O(m) len of compared string
+
+
+AAAA
+0123
+
+This is fucked!
 
 """
+
+def solveKMP(words):
+
+    # First, assemble LPS Table
+    lpsTable = {}
+
+    for word in words:
+        lps = []
+
+        
+
+
 
 def solve(words):
 
